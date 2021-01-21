@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 
 
 function App() {
-  const [prices, setPrices] = useState([]);
-  const [dates, setDates] = useState([]);
+  const [prices, setPrices] = useState([1,2,3]);
+  const [dates, setDates] = useState([0,1,2]);
 
 
   const getStock = async ticker => {
@@ -27,7 +27,7 @@ function App() {
   };
 
   const getMultipleStocks = async tickersArray =>{
-    const request = await fetch(`http://localhost:8080/stocks`, {
+    const request = await fetch(`/stocks`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -63,44 +63,50 @@ function App() {
   }
 
 
+
+
   useEffect(async () => {
     try {
-     let stock = getStock();
-     stock("AAPL", 'daily');
+     let stock = await getStock("AAPL", 'daily');
       let priceArray = [];
       let dateArray = [];
-      console.log(stock)
-      for (let keys in response.data.bpi) {
+      let data = stock.data[`Time Series (Daily)`]
+      console.log(data)
+      for (let keys in data) {
         dateArray.push(keys);
-        priceArray.push(response.data.bpi[keys]);
+        priceArray.push(data[keys]['1. open']);
+        setPrices(priceArray);
+         setDates(dateArray);
       }
-      setPrices(priceArray);
-      setDates(dateArray);
-      console.log(dates, prices);
+
     } catch(err) {
       console.log(err);
     }
   }, []);
 
-  // var ctx = document.getElementById('myChart');
-  // var chart = new Chart(ctx, {
-  //     // The type of chart we want to create
-  //     type: 'line',
 
-  //     // The data for our dataset
-  //     data: {
-  //         labels: dates,
-  //         datasets: [{
-  //             label: 'Bitcoin Prices',
-  //             borderColor: 'rgb(255, 99, 132)',
-  //             data: prices,
-  //         }]
-  //     },
+  var ctx = document.getElementById('chart');
+  var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
 
-  //     // Configuration options go here
-  //     options: {}
-  // });
+    // The data for our dataset
+    data: {
+        labels: dates,
+        datasets: [{
+            label: 'Bitcoin Prices',
+            borderColor: 'rgb(255, 99, 132)',
+            data: prices,
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+
+
   return (
+
     <div>
       <h2>Hey!</h2>
       <button onClick={() => getStock("AAPL", 'daily')}>Get stock</button>
