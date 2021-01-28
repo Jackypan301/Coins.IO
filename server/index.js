@@ -85,6 +85,18 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+app.get('/news',  (req, res) => {
+  var url = 'http://newsapi.org/v2/top-headlines?' +
+                'country=us&' +
+                'category=business&'+
+                'pageSize=10&'+
+                `apiKey=${process.env.NEWS_API_KEY}`;
+
+fetch(url)
+.then(response => response.json())
+.then(data => res.send(data));
+})
+
 app.listen(3000, () => {
   console.log("index.js 6 | server started...");
 });

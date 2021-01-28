@@ -2,6 +2,8 @@ import Chart from 'chart.js';
 import React, { useEffect, useState } from 'react';
 import LineChart from './component/LineChart.jsx'
 import SearchBar from './component/SearchBar.jsx'
+import axios from 'axios'
+import TopNewsList from './component/TopNewsList.jsx'
 // function App() {
 //   const [prices, setPrices] = useState([1,2,3]);
 //   const [dates, setDates] = useState([0,1,2]);
@@ -125,15 +127,18 @@ class App extends React.Component {
       prices:[],
       dates:[],
       ticker:'',
+      news:[]
     }
 
     this.getStock = this.getStock.bind(this);
+    this.getNews = this.getNews.bind(this);
   }
 
 
   componentDidMount(){
     this.setState({prices:5})
     this.getStock("AAPL", 'daily')
+    this.getNews()
   }
 
 
@@ -165,6 +170,16 @@ class App extends React.Component {
         dates:dateArray, ticker:ticker});
   };
 
+  async getNews (ticker) {
+    axios.get('/news')
+    .then((response)=>{console.log(response.data.articles)
+      const pointerToThis = this;
+      pointerToThis.setState({news:response.data.articles});
+    })
+    .catch((error)=>{console.log(error)})
+
+  };
+
 
 
 
@@ -173,7 +188,8 @@ class App extends React.Component {
       <div>
         Hello world
         <LineChart dates={this.state.dates} prices={this.state.prices} ticker={this.state.ticker} />
-        <SearchBar />
+        <SearchBar search={this.getStock}/>
+        <TopNewsList news={this.state.news}/>
       </div>
     )
   }
