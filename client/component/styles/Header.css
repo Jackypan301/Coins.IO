@@ -1,0 +1,45 @@
+.imgLogo {
+  border-radius: 50%;
+  margin-left: 48px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.logo{
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  color:white;
+}
+
+.searchContainer{
+height: 20px;
+border: 1px solid #31363A;
+border-radius: 4px;
+width: 375px;
+margin-left: 5px;
+margin-right: 5px;
+background-color: white;
+}
+
+.menuItems{
+  margin-left: 45px;
+}
+
+.menuItems a {
+  color:white;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0 10px;
+  font-family: 'Vazir', sans-serif !important;
+}
+
+.menuItems a:hover {
+  color:#5AC53B;
+}

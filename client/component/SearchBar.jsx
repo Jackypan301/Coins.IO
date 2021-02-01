@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './styles/SearchBar.css'
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -21,15 +22,10 @@ class SearchBar extends React.Component {
 
   render(){
     return(
-      <div>
-      <p>   All tickers must be capitalized</p>
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Ticker:
-          <input type='text' value={this.state.ticker} onChange={this.handlechange}
+      <div className={styles.wrapper}>
+      <form className={styles.form} onSubmit={this.handleSubmit}>
+          <input className={styles.searchBar} placeholder="Search" type='text' value={this.state.ticker} onChange={this.handlechange}
           />
-        </label>
-        <input type="submit" value="Submit" />
       </form>
       </div>
     )

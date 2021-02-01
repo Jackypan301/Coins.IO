@@ -4,6 +4,10 @@ import LineChart from './component/LineChart.jsx'
 import SearchBar from './component/SearchBar.jsx'
 import axios from 'axios'
 import TopNewsList from './component/TopNewsList.jsx'
+import styles from './StyleApp.css'
+import Header from './component/Header.jsx'
+import NewsFeed from './component/NewsFeed.jsx'
+import Stats from './component/Stats.jsx'
 // function App() {
 //   const [prices, setPrices] = useState([1,2,3]);
 //   const [dates, setDates] = useState([0,1,2]);
@@ -127,7 +131,8 @@ class App extends React.Component {
       prices:[],
       dates:[],
       ticker:'',
-      news:[]
+      news:[],
+      stock:[]
     }
 
     this.getStock = this.getStock.bind(this);
@@ -136,7 +141,6 @@ class App extends React.Component {
 
 
   componentDidMount(){
-    this.setState({prices:5})
     this.getStock("AAPL", 'daily')
     this.getNews()
   }
@@ -165,9 +169,19 @@ class App extends React.Component {
         dateArray.push(keys);
         priceArray.push(NewData[keys]['1. open']);
       }
+      var stock = []
+      for (var i = 0; i < dateArray.length; i++) {
+        var entry={};
+        entry.x = dateArray[i];
+        entry.y = priceArray[i];
+        stock.push(entry);
+      }
+
       const pointerToThis = this;
       pointerToThis.setState({prices:priceArray,
-        dates:dateArray, ticker:ticker});
+        dates:dateArray, ticker:ticker, stock:stock});
+
+
   };
 
   async getNews (ticker) {
@@ -185,10 +199,20 @@ class App extends React.Component {
 
   render () {
     return(
-      <div>
-        Hello world
-        <LineChart dates={this.state.dates} prices={this.state.prices} ticker={this.state.ticker} />
-        <SearchBar search={this.getStock}/>
+      <div className={styles.background}>
+        <div className={styles.header}>
+          <Header search={this.getStock} />
+        </div>
+
+        <div className={styles.body}>
+          <div className={styles.container}>
+            <NewsFeed dates={this.state.dates} prices={this.state.prices} ticker={this.state.ticker} stock={this.state.stock}/>
+            {/* stats */}
+            <Stats />
+          </div>
+        </div>
+        {/* <LineChart dates={this.state.dates} prices={this.state.prices} ticker={this.state.ticker} stock={this.state.stock} /> */}
+
         <TopNewsList news={this.state.news}/>
       </div>
     )
