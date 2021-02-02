@@ -11,7 +11,7 @@ function Stats() {
 
 
   const url = 'https://finnhub.io/api/v1/quote'
-  const token = 'c0c49en48v6u6kubal60'
+  const token = 'c0cr4h748v6rlbal1i60'
 
   const getMyStocks = () => {
     db

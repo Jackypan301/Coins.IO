@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles/StatsRow.css'
 import StockChart from './miniStock.svg'
-import {db } from './firebase.js'
+import { db } from './firebase.js'
 function StatsRow(props) {
 
     const percentage = ((props.price - props.openPrice)/props.openPrice)*100;
@@ -9,10 +9,33 @@ function StatsRow(props) {
 
     const buyStock = () => {
 
+        db.collection('myStocks')
+        .where('ticker', '==', props.name)
+        .get()
+        .then((querySnapshot)=>{
+
+          if (!querySnapshot.empty) {
+            querySnapshot.forEach(function(doc) {
+              db.collection('myStocks')
+              .doc(doc.id)
+              .update({
+                  shares: doc.data().shares+=1
+              })
+            })
+
+          } else {
+            db.collection('myStocks')
+            .add({
+              ticker: props.name,
+              shares: 1
+            })
+
+          }
+        })
     }
 
   return (
-    <div className={styles.row} onClick={buyStock()}>
+    <div className={styles.row} onClick={()=>{buyStock()}}>
         <div className={styles.intro}>
           <h1>{props.name}</h1>
           <p>{props.shares &&

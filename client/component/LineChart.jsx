@@ -42,7 +42,7 @@ componentDidMount() {
 
 render() {
   return (
-    <div className>
+    <div >
       <Line
         data={{
           datasets:[
