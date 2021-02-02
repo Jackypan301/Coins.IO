@@ -22,4 +22,54 @@
 
 .graph {
   height: 200px;
+  width: auto;
+  margin-bottom: 180px;
+}
+
+.buyingpower{
+display: flex;
+justify-content: space-between;
+border-bottom: 1px solid #3b4754;
+padding: 20px 0px 20px 0px;
+
+}
+
+.market{
+  margin-top: 60px;
+}
+
+.marketbox{
+height: 10vh;
+padding: 20px;
+border:1px solid #3b4754;
+border-radius: 4px;
+text-align: left;
+}
+
+.marketbox p {
+  color: #7B858A;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.popularlistintro{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0px 20px 0px;
+}
+
+.popularlist{
+  margin-top: 60px;;
+}
+
+.popularlistintro p {
+  cursor: pointer;
+}
+
+.popularlistbadges{
+  display: flex;
+  flex-wrap: wrap;
 }

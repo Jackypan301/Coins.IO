@@ -213,7 +213,7 @@ class App extends React.Component {
         </div>
         {/* <LineChart dates={this.state.dates} prices={this.state.prices} ticker={this.state.ticker} stock={this.state.stock} /> */}
 
-        <TopNewsList news={this.state.news}/>
+        {/* <TopNewsList news={this.state.news}/> */}
       </div>
     )
   }

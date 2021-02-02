@@ -1,14 +1,22 @@
 import React from 'react'
 import styles from './styles/StatsRow.css'
+import StockChart from './miniStock.svg'
+import {db } from './firebase.js'
+function StatsRow(props) {
+
+    const percentage = ((props.price - props.openPrice)/props.openPrice)*100;
 
 
-function StatsRow() {
+    const buyStock = () => {
+
+    }
+
   return (
-    <div className={styles.row}>
+    <div className={styles.row} onClick={buyStock()}>
         <div className={styles.intro}>
-          <h1>{props?.name}</h1>
-          <p>{props.volume &&
-            (props.volume + " shares")
+          <h1>{props.name}</h1>
+          <p>{props.shares &&
+            (props.shares + " shares")
           }</p>
         </div>
         <div className={styles.chart}>

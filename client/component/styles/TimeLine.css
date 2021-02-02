@@ -1,0 +1,27 @@
+.container{
+  display: flex;
+  border-bottom: 1px solid #3b4754;
+}
+
+.buttonscontainer{
+  display: flex;
+  align-items: center;
+}
+
+.button{
+  font-weight: bold;
+  padding: 10px 10px 20px 10px;
+  cursor: pointer;
+}
+
+.button:hover {
+  color: #5AC538;
+}
+
+.buttonactive {
+  color: #5AC538;
+  border-bottom: 2px solid #5AC538;
+  font-weight: bold;
+  padding: 10px 10px 20px 10px;
+  cursor: pointer;
+}

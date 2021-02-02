@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "nodemon ./server/index.js"
+    "start": "nodemon ./server/index.js",
+    "db": "node ./database/firebase.js"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
     "debug": "^4.3.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "firebase": "^8.2.5",
     "moment": "^2.29.1",
     "node-fetch": "^2.6.1",
     "path": "^0.12.7",
