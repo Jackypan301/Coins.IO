@@ -37,7 +37,7 @@ react-scripts start
 ## Features
 
 Stock chart with the possibility of panning and zooming:
-![quotes](<img src="/Users/jackypan/project-A/Screen Shot 2021-02-22 at 12.25.11 PM.png">)
+![quotes](<img src="./screenshot.png">)
 
 ## Comments
 
