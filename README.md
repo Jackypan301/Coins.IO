@@ -37,7 +37,7 @@ react-scripts start
 ## Features
 
 Stock chart with the possibility of panning and zooming:
-![quotes](<img src="./screenshot.png">)
+![quotes](<img src="https://imgur.com/a/y8RU9FO">)
 
 ## Comments
 
